@@ -1,7 +1,19 @@
-require "dynamodb/api/version"
+require 'aws-sdk-dynamodb'
+
+require 'dynamodb/api/version'
+require 'dynamodb/api/config'
+require 'dynamodb/api/adapter'
 
 module Dynamodb
   module Api
-    # Your code goes here...
+    extend self
+
+    def config
+      block_given? ? yield(Dynamodb::Api::Config) : Dynamodb::Api::Config
+    end
+
+    def adapter
+      @adapter ||= Dynamodb::Api::Adapter.new
+    end
   end
 end
