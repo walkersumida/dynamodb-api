@@ -1,4 +1,4 @@
-require 'aws-sdk-dynamodb'
+require 'aws-sdk'
 
 require 'dynamodb/api/version'
 require 'dynamodb/api/config'
