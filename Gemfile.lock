@@ -1,22 +1,19 @@
 PATH
   remote: .
   specs:
-    dynamodb-api (0.2.0)
-      aws-sdk-dynamodb (~> 1)
+    dynamodb-api (0.2.1)
+      aws-sdk (~> 2)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    aws-eventstream (1.0.1)
-    aws-partitions (1.96.0)
-    aws-sdk-core (3.22.1)
-      aws-eventstream (~> 1.0)
-      aws-partitions (~> 1.0)
+    aws-sdk (2.11.92)
+      aws-sdk-resources (= 2.11.92)
+    aws-sdk-core (2.11.92)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-dynamodb (1.8.0)
-      aws-sdk-core (~> 3)
-      aws-sigv4 (~> 1.0)
+    aws-sdk-resources (2.11.92)
+      aws-sdk-core (= 2.11.92)
     aws-sigv4 (1.0.3)
     byebug (10.0.2)
     coderay (1.1.2)
