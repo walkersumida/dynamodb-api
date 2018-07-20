@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dynamodb-api (0.1.0)
+    dynamodb-api (0.2.0)
       aws-sdk-dynamodb (~> 1)
 
 GEM
