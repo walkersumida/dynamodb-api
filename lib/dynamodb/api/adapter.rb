@@ -1,7 +1,9 @@
 module Dynamodb
   module Api
     class Adapter
-      def connect!
+      attr_reader :client
+
+      def initialize
         @client = Aws::DynamoDB::Client.new(connect_config)
       end
 
@@ -22,10 +24,6 @@ module Dynamodb
         end
 
         @connect_hash
-      end
-
-      def client
-        @client
       end
     end
   end
