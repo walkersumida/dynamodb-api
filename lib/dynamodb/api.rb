@@ -9,6 +9,7 @@ require 'dynamodb/api/relation'
 require 'dynamodb/api/relation/query_methods'
 require 'dynamodb/api/relation/from_clause'
 require 'dynamodb/api/relation/select_clause'
+require 'dynamodb/api/relation/order_clause'
 require 'dynamodb/api/relation/global_secondary_index'
 
 module Dynamodb

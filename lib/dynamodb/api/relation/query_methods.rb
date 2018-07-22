@@ -19,6 +19,11 @@ module Dynamodb
         self.select_clause = Relation::SelectClause.new(value)
         self
       end
+
+      def order(value = nil)
+        self.order_clause = Relation::OrderClause.new(value)
+        self
+      end
     end
   end
 end

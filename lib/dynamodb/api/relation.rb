@@ -9,6 +9,7 @@ module Dynamodb
       attr_accessor :index_clause
       attr_accessor :from_clause
       attr_accessor :select_clause
+      attr_accessor :order_clause
     end
   end
 end
