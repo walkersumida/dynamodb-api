@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'dynamodb/api/relation'
-
 module Dynamodb
   module Api
     class Query # :nodoc:
