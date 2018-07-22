@@ -29,6 +29,8 @@ Dynamodb::Api.config do |config|
   config.access_key = ''
   config.secret_key = ''
   config.region = ''
+  config.table_name_prefix = ''
+  config.index_name_prefix = ''
 end
 ```
 
