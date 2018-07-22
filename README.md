@@ -20,9 +20,17 @@ Or install it yourself as:
 
     $ gem install dynamodb-api
 
-## Usage
+## Configuration
 
-TODO: Write usage instructions here
+`config/initializers/dynamodb_api.rb`
+
+```
+Dynamodb::Api.config do |config|
+  config.access_key = ''
+  config.secret_key = ''
+  config.region = ''
+end
+```
 
 ## Development
 
