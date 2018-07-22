@@ -11,6 +11,7 @@ require 'dynamodb/api/relation/from_clause'
 require 'dynamodb/api/relation/select_clause'
 require 'dynamodb/api/relation/order_clause'
 require 'dynamodb/api/relation/where_clause'
+require 'dynamodb/api/relation/filter_clause'
 require 'dynamodb/api/relation/global_secondary_index'
 
 module Dynamodb

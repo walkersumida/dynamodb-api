@@ -29,6 +29,11 @@ module Dynamodb
         self.where_clause = Relation::WhereClause.new(key, value, operator)
         self
       end
+
+      def filter(expression, values)
+        self.filter_clause = Relation::FilterClause.new(expression, values)
+        self
+      end
     end
   end
 end
