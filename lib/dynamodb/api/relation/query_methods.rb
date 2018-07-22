@@ -9,6 +9,11 @@ module Dynamodb
         self.from_clause = Relation::FromClause.new(value)
         self
       end
+
+      def index(value)
+        self.index_clause = Relation::GlobalSecondaryIndex.new(value)
+        self
+      end
     end
   end
 end

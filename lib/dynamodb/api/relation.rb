@@ -6,6 +6,7 @@ module Dynamodb
   module Api
     class Relation # :nodoc:
       include QueryMethods
+      attr_accessor :index_clause
       attr_accessor :from_clause
     end
   end

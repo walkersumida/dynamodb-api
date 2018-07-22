@@ -8,6 +8,7 @@ require 'dynamodb/api/query'
 require 'dynamodb/api/relation'
 require 'dynamodb/api/relation/query_methods'
 require 'dynamodb/api/relation/from_clause'
+require 'dynamodb/api/relation/global_secondary_index'
 
 module Dynamodb
   module Api
