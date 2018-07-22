@@ -4,6 +4,10 @@ require 'active_support'
 require 'dynamodb/api/version'
 require 'dynamodb/api/config'
 require 'dynamodb/api/adapter'
+require 'dynamodb/api/query'
+require 'dynamodb/api/relation'
+require 'dynamodb/api/relation/query_methods'
+require 'dynamodb/api/relation/from_clause'
 
 module Dynamodb
   module Api
