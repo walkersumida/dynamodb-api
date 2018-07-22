@@ -24,6 +24,11 @@ module Dynamodb
         self.order_clause = Relation::OrderClause.new(value)
         self
       end
+
+      def where(key, value, operator)
+        self.where_clause = Relation::WhereClause.new(key, value, operator)
+        self
+      end
     end
   end
 end
