@@ -14,6 +14,11 @@ module Dynamodb
         self.index_clause = Relation::GlobalSecondaryIndex.new(value)
         self
       end
+
+      def select(value = nil)
+        self.select_clause = Relation::SelectClause.new(value)
+        self
+      end
     end
   end
 end

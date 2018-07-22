@@ -8,6 +8,7 @@ module Dynamodb
       include QueryMethods
       attr_accessor :index_clause
       attr_accessor :from_clause
+      attr_accessor :select_clause
     end
   end
 end
