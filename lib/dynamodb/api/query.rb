@@ -23,17 +23,8 @@ module Dynamodb
           index_name: @relation.index_clause.name,
           select: @relation.select_clause.name,
           scan_index_forward: @relation.order_clause.direct,
-          key_conditions: build_where_clause
+          key_conditions: @relation.where_clause.key_conditions
         }.merge(build_filter_clause)
-      end
-
-      def build_where_clause
-        {
-          @relation.where_clause.key => {
-            attribute_value_list: [@relation.where_clause.value],
-            comparison_operator: @relation.where_clause.operator
-          }
-        }
       end
 
       def build_filter_clause

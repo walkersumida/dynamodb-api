@@ -25,8 +25,8 @@ module Dynamodb
         self
       end
 
-      def where(key, value, operator)
-        self.where_clause = Relation::WhereClause.new(key, value, operator)
+      def where(key_conditions)
+        self.where_clause = Relation::WhereClause.new(key_conditions)
         self
       end
 
