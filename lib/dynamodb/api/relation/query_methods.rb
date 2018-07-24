@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'dynamodb/api/relation/from_clause'
-
 module Dynamodb
   module Api
     module QueryMethods # :nodoc:
