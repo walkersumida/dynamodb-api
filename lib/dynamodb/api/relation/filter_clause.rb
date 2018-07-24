@@ -2,7 +2,7 @@
 
 module Dynamodb
   module Api
-    class Relation
+    module Relation
       class FilterClause # :nodoc:
         attr_reader :expression
         attr_reader :values

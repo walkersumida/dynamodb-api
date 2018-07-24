@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
+require 'dynamodb/api/relation'
+
 module Dynamodb
   module Api
     class Query # :nodoc:
+      include Relation
       attr_reader :client
-      attr_reader :relation
 
       def initialize
-        @relation = Relation.new
         @client = Adapter.new.client
       end
 
@@ -19,18 +20,18 @@ module Dynamodb
 
       def build_query
         {
-          table_name: @relation.from_clause.name,
-          index_name: @relation.index_clause.name,
-          select: @relation.select_clause.name,
-          scan_index_forward: @relation.order_clause.direct,
-          key_conditions: @relation.where_clause.key_conditions
+          table_name: from_clause.name,
+          index_name: index_clause.name,
+          select: select_clause.name,
+          scan_index_forward: order_clause.direct,
+          key_conditions: where_clause.key_conditions
         }.merge(build_filter_clause)
       end
 
       def build_filter_clause
         {
-          filter_expression: @relation.filter_clause.expression,
-          expression_attribute_values: @relation.filter_clause.values
+          filter_expression: filter_clause.expression,
+          expression_attribute_values: filter_clause.values
         }
       end
     end

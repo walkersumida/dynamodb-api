@@ -2,7 +2,7 @@
 
 module Dynamodb
   module Api
-    class Relation
+    module Relation
       class WhereClause # :nodoc:
         attr_reader :key_conditions
 

@@ -4,7 +4,7 @@ require 'dynamodb/api/relation/query_methods'
 
 module Dynamodb
   module Api
-    class Relation # :nodoc:
+    module Relation # :nodoc:
       include QueryMethods
       attr_accessor :index_clause
       attr_accessor :from_clause

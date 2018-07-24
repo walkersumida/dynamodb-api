@@ -2,7 +2,7 @@
 
 module Dynamodb
   module Api
-    class Relation
+    module Relation
       class GlobalSecondaryIndex
         attr_reader  :name
 

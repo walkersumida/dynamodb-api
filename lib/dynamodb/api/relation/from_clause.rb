@@ -2,7 +2,7 @@
 
 module Dynamodb
   module Api
-    class Relation
+    module Relation
       class FromClause # :nodoc:
         attr_reader :name
 
