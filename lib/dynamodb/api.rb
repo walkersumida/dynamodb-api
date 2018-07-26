@@ -16,7 +16,7 @@ require 'dynamodb/api/relation/global_secondary_index'
 
 module Dynamodb
   module Api
-    extend self
+    module_function
 
     def config
       block_given? ? yield(Dynamodb::Api::Config) : Dynamodb::Api::Config
