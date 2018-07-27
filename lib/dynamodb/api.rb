@@ -15,7 +15,7 @@ require 'dynamodb/api/relation/filter_clause'
 require 'dynamodb/api/relation/global_secondary_index'
 
 module Dynamodb
-  module Api
+  module Api # :nodoc:
     module_function
 
     def config
