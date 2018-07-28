@@ -1,6 +1,6 @@
 module Dynamodb
   module Api
-    class Adapter
+    class Adapter # :nodoc:
       attr_reader :client
 
       def initialize
