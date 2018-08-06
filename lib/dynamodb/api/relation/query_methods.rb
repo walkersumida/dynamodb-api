@@ -32,6 +32,11 @@ module Dynamodb
         self.filter_clause = Relation::FilterClause.new(expression, values)
         self
       end
+
+      def ex_attr(names)
+        self.expression_attribute = Relation::ExpressionAttributeNames.new(names)
+        self
+      end
     end
   end
 end

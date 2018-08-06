@@ -13,6 +13,7 @@ require 'dynamodb/api/relation/order_clause'
 require 'dynamodb/api/relation/where_clause'
 require 'dynamodb/api/relation/filter_clause'
 require 'dynamodb/api/relation/global_secondary_index'
+require 'dynamodb/api/relation/expression_attribute_names'
 
 module Dynamodb
   module Api # :nodoc:

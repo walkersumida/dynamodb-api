@@ -12,6 +12,7 @@ module Dynamodb
       attr_accessor :order_clause
       attr_accessor :where_clause
       attr_accessor :filter_clause
+      attr_accessor :expression_attribute
     end
   end
 end
