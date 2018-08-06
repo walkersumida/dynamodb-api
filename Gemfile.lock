@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dynamodb-api (0.3.3)
+    dynamodb-api (0.4.0)
       activesupport (>= 4)
       aws-sdk (~> 2)
 
