@@ -3,3 +3,9 @@ language: ruby
 rvm:
   - 2.5.1
 before_install: gem install bundler -v 1.16.2
+
+before_script:
+  - docker-compose up -d
+
+after_script:
+  - docker-compose down
