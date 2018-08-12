@@ -6,14 +6,9 @@ module Dynamodb
   module Api
     class Query # :nodoc:
       include Relation
-      attr_reader :client
-
-      def initialize
-        @client = Adapter.client
-      end
 
       def all
-        @client.query(build_query)
+        Adapter.client.query(build_query)
       end
 
       private
