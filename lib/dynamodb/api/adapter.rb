@@ -1,15 +1,13 @@
 module Dynamodb
   module Api
     class Adapter # :nodoc:
-      attr_reader :client
+      attr_reader :_client
 
-      def initialize
-        @client = Aws::DynamoDB::Client.new(connect_config)
+      def self.client
+        @_client ||= Aws::DynamoDB::Client.new(connect_config)
       end
 
-      private
-
-      def connect_config
+      def self.connect_config
         @connect_hash = {}
 
         if Dynamodb::Api::Config.endpoint?

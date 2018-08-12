@@ -9,7 +9,7 @@ module Dynamodb
       attr_reader :client
 
       def initialize
-        @client = Adapter.new.client
+        @client = Adapter.client
       end
 
       def all
