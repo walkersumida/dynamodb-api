@@ -8,19 +8,14 @@ module Dynamodb
       end
 
       def self.connect_config
+        config_keys = %w[endpoint access_key secret_key region]
         @connect_hash = {}
 
-        if Dynamodb::Api::Config.endpoint?
-          @connect_hash[:endpoint] = Dynamodb::Api::Config.endpoint
-        end
-        if Dynamodb::Api::Config.access_key?
-          @connect_hash[:access_key_id] = Dynamodb::Api::Config.access_key
-        end
-        if Dynamodb::Api::Config.secret_key?
-          @connect_hash[:secret_access_key] = Dynamodb::Api::Config.secret_key
-        end
-        if Dynamodb::Api::Config.region?
-          @connect_hash[:region] = Dynamodb::Api::Config.region
+        config_keys.each do |config_key|
+          if Dynamodb::Api::Config.send("#{config_key}?")
+            @connect_hash[config_key.to_sym] =
+              Dynamodb::Api::Config.send(config_key)
+          end
         end
 
         @connect_hash
