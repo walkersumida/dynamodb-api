@@ -8,7 +8,7 @@ module Dynamodb
       end
 
       def self.connect_config
-        config_keys = %w[endpoint access_key secret_key region]
+        config_keys = %w[endpoint access_key_id secret_access_key region]
         @connect_hash = {}
 
         config_keys.each do |config_key|

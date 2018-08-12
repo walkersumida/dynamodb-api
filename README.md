@@ -26,8 +26,8 @@ Or install it yourself as:
 
 ```
 Dynamodb::Api.config do |config|
-  config.access_key = ''
-  config.secret_key = ''
+  config.access_key_id = ''
+  config.secret_access_key = ''
   config.region = ''
   config.table_name_prefix = ''
   config.index_name_prefix = ''

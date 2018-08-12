@@ -6,8 +6,8 @@ module Dynamodb
       extend self
       extend Options
 
-      option :access_key, default: nil
-      option :secret_key, default: nil
+      option :access_key_id, default: nil
+      option :secret_access_key, default: nil
       option :region, default: nil
       option :endpoint, default: nil
       option :table_name_prefix, default: ''
