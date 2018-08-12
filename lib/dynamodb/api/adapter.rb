@@ -7,6 +7,8 @@ module Dynamodb
         @client = Aws::DynamoDB::Client.new(connect_config)
       end
 
+      private
+
       def connect_config
         @connect_hash = {}
 
