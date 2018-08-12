@@ -17,14 +17,22 @@ module Dynamodb
         build_params = {
           table_name: from_clause.name,
           index_name: index_clause.name,
-          select: select_clause.name,
-          scan_index_forward: order_clause.direct,
           key_conditions: where_clause.key_conditions
         }.merge(build_filter_clause)
+        build_params[:scan_index_forward] = order_direct(order_clause)
+        build_params[:select] = select_name(select_clause)
         if expression_attribute&.names
           build_params[:expression_attribute_names] = expression_attribute.names
         end
         build_params
+      end
+
+      def order_direct(celf)
+        celf&.direct ? celf.direct : OrderClause.new.direct
+      end
+
+      def select_name(celf)
+        celf&.name ? celf.name : SelectClause.new.name
       end
 
       def build_filter_clause
