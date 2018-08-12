@@ -36,6 +36,7 @@ module Dynamodb
       end
 
       def build_filter_clause
+        return {} unless filter_clause&.expression
         {
           filter_expression: filter_clause.expression,
           expression_attribute_values: filter_clause.values
