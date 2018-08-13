@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dynamodb/api/config/options'
 
 module Dynamodb
