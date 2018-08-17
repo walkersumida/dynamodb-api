@@ -27,12 +27,12 @@ module Dynamodb
         build_params
       end
 
-      def order_direct(celf)
-        celf&.direct ? celf.direct : OrderClause.new.direct
+      def order_direct(clause)
+        clause&.direct ? clause.direct : OrderClause.new.direct
       end
 
-      def select_name(celf)
-        celf&.name ? celf.name : SelectClause.new.name
+      def select_name(clause)
+        clause&.name ? clause.name : SelectClause.new.name
       end
 
       def build_filter_clause
