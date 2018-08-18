@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Dynamodb::Api::Relation::FromClause do
   describe '#initialize' do
     context 'table_name_prefix is empty' do

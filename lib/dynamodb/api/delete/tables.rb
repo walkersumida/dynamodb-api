@@ -15,4 +15,3 @@ module Dynamodb
     end
   end
 end
-
