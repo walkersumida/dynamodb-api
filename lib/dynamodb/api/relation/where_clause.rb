@@ -17,12 +17,23 @@ module Dynamodb
         private
 
         def build(key_conditions)
-          key_conditions.each_with_object({}) do |c, h|
+          conditions = format_conditions(key_conditions)
+          conditions.each_with_object({}) do |c, h|
             h[c[KEY]] = {
-              attribute_value_list: c[VALUE],
+              attribute_value_list: format_value(c[VALUE]),
               comparison_operator: c[OPERATOR]
             }
           end
+        end
+
+        def format_conditions(conditions)
+          return [conditions] unless conditions[0].is_a?(Array)
+          conditions
+        end
+
+        def format_value(value)
+          return [value] unless value.is_a?(Array)
+          value
         end
       end
     end
