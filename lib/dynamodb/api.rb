@@ -28,7 +28,7 @@ module Dynamodb
       @adapter ||= Dynamodb::Api::Adapter.new
     end
 
-    def delete_tables
+    def drop_tables
       Delete::Tables.delete_tables
     end
   end
