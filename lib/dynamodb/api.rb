@@ -14,6 +14,7 @@ require 'dynamodb/api/relation/where_clause'
 require 'dynamodb/api/relation/filter_clause'
 require 'dynamodb/api/relation/global_secondary_index'
 require 'dynamodb/api/relation/expression_attribute_names'
+require 'dynamodb/api/delete/tables'
 
 module Dynamodb
   module Api # :nodoc:
@@ -25,6 +26,10 @@ module Dynamodb
 
     def adapter
       @adapter ||= Dynamodb::Api::Adapter.new
+    end
+
+    def delete_tables
+      Delete::Tables.delete_tables
     end
   end
 end
