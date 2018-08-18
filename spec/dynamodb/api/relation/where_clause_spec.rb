@@ -50,7 +50,7 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
             Dynamodb::Api::Relation::WhereClause.new(key_condition).key_conditions
           ).to eq(
             'maker' => {
-              attribute_value_list: ['Honda'],
+              attribute_value_list: %w[Honda],
               comparison_operator: 'EQ'
             },
             'release_date' => {
