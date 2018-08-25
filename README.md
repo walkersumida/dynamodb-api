@@ -39,7 +39,9 @@ end
 ## How to use
 e.g.
 
-| maker_id | model | release_date |
+cars table.
+
+| maker_id(Partition key) | model | release_date(Sort key) |
 |:---|:---|:---|
 |1 |Accord |0.19760508e8 |
 |2 |CROWN |0.19550101e8 |
@@ -49,7 +51,7 @@ e.g.
 ### Query
 https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instance_method
 
-#### only hash key
+#### only Partition(Hash) key
 
 ```ruby
 query = Dynamodb::Api::Query.new
@@ -63,7 +65,7 @@ items = query.all.items
 |1 |S2000 |0.19980101e8 |
 |1 |Accord |0.19760508e8 |
 
-#### hash/range keys
+#### Partition key and Sort(Range) key
 
 ```ruby
 query = Dynamodb::Api::Query.new
@@ -76,7 +78,7 @@ items = query.all.items
 |:---|:---|:---|
 |1 |S2000 |0.19980101e8 |
 
-#### sort
+#### Sorting
 
 ```ruby
 query = Dynamodb::Api::Query.new
