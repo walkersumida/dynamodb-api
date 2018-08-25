@@ -36,6 +36,76 @@ Dynamodb::Api.config do |config|
 end
 ```
 
+## How to use
+e.g.
+| maker_id | model | release_date |
+|:---|:---|:---|
+|1 |Accord |0.19760508e8 |
+|2 |CROWN |0.19550101e8 |
+|3 |Model S |0.20120601e8 |
+|1 |S2000 |0.19980101e8 |
+
+### Query
+https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instance_method
+
+#### only hash key
+
+```ruby
+query = Dynamodb::Api::Query.new
+query.from('cars').index('index_maker_id_release_date')
+query.where(['maker_id', 1, 'EQ'])
+items = query.all.items
+```
+
+| maker_id | model | release_date |
+|:---|:---|:---|
+|1 |S2000 |0.19980101e8 |
+|1 |Accord |0.19760508e8 |
+
+#### hash/range keys
+
+```ruby
+query = Dynamodb::Api::Query.new
+query.from('cars').index('index_maker_id_release_date')
+query.where([['maker_id', 1, 'EQ'], ['release_date', 19_980_101, 'GE']])
+items = query.all.items
+```
+
+| maker_id | model | release_date |
+|:---|:---|:---|
+|1 |S2000 |0.19980101e8 |
+
+#### sort
+
+```ruby
+query = Dynamodb::Api::Query.new
+query.from('cars').index('index_maker_id_release_date')
+query.where(['maker_id', 1, 'EQ'])
+query.order('asc') // default: 'desc'
+items = query.all.items
+```
+
+| maker_id | model | release_date |
+|:---|:---|:---|
+|1 |Accord |0.19760508e8 |
+|1 |S2000 |0.19980101e8 |
+
+#### filter
+
+```ruby
+query = Dynamodb::Api::Query.new
+query.from('cars').index('index_maker_id_release_date')
+query.where(['maker_id', 1, 'EQ'])
+query.filter('model = :model', ':model': 'S2000')
+items = query.all.items
+```
+
+| maker_id | model | release_date |
+|:---|:---|:---|
+|1 |Accord |0.19760508e8 |
+|1 |S2000 |0.19980101e8 |
+
+
 ## Development
 
 - Run `docker-compose up` to run the dynamodb_local.
