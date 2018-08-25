@@ -84,7 +84,7 @@ items = query.all.items
 query = Dynamodb::Api::Query.new
 query.from('cars').index('index_maker_id_release_date')
 query.where(['maker_id', 1, 'EQ'])
-query.order('asc') // default: 'desc'
+query.order('asc') # default: 'desc'
 items = query.all.items
 ```
 
