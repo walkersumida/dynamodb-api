@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['WalkerSumida']
   spec.email         = ['walkersumida@gmail.com']
 
-  spec.summary       = %q{aws dynamodb api}
-  spec.description   = %q{aws dynamodb api}
+  spec.summary       = %q(aws dynamodb api)
+  spec.description   = %q(aws dynamodb api)
   spec.homepage      = 'https://github.com/walkersumida/dynamodb-api'
   spec.license       = 'MIT'
 

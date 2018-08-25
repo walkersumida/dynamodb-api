@@ -5,4 +5,3 @@ RSpec.describe Dynamodb::Api::Adapter do
     end
   end
 end
-
