@@ -2,9 +2,6 @@
 
 [![Build Status](https://travis-ci.org/walkersumida/dynamodb-api.svg?branch=master)](https://travis-ci.org/walkersumida/dynamodb-api)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dynamodb/api`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -24,9 +21,11 @@ Or install it yourself as:
 
 ## Configuration
 
+### Rails
+
 `config/initializers/dynamodb_api.rb`
 
-```
+```ruby
 Dynamodb::Api.config do |config|
   config.access_key_id = ''
   config.secret_access_key = ''
@@ -34,6 +33,16 @@ Dynamodb::Api.config do |config|
   config.table_name_prefix = ''
   config.index_name_prefix = ''
 end
+```
+
+### Other
+
+```ruby
+Dynamodb::Api.config.access_key_id = ''
+Dynamodb::Api.config.secret_access_key = ''
+Dynamodb::Api.config.region = ''
+Dynamodb::Api.config.table_name_prefix = ''
+Dynamodb::Api.config.index_name_prefix = ''
 ```
 
 ## How to use
