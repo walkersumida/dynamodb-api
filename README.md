@@ -38,6 +38,7 @@ end
 
 ## How to use
 e.g.
+
 | maker_id | model | release_date |
 |:---|:---|:---|
 |1 |Accord |0.19760508e8 |
