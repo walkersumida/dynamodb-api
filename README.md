@@ -105,7 +105,6 @@ items = query.all.items
 
 | maker_id | model | release_date |
 |:---|:---|:---|
-|1 |Accord |0.19760508e8 |
 |1 |S2000 |0.19980101e8 |
 
 
