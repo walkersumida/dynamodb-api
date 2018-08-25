@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['WalkerSumida']
   spec.email         = ['walkersumida@gmail.com']
 
-  spec.summary       = %q{aws dynamodb api}
-  spec.description   = %q{aws dynamodb api}
+  spec.summary       = %q(aws dynamodb api)
+  spec.description   = %q(aws dynamodb api)
   spec.homepage      = 'https://github.com/walkersumida/dynamodb-api'
   spec.license       = 'MIT'
 
@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'rubocop-airbnb'
 end

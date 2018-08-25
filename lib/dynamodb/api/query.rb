@@ -17,7 +17,7 @@ module Dynamodb
         build_params = {
           table_name: from_clause.name,
           index_name: index_clause.name,
-          key_conditions: where_clause.key_conditions
+          key_conditions: where_clause.key_conditions,
         }.merge(build_filter_clause)
         build_params[:scan_index_forward] = order_direct(order_clause)
         build_params[:select] = select_name(select_clause)
@@ -39,7 +39,7 @@ module Dynamodb
         return {} unless filter_clause&.expression
         {
           filter_expression: filter_clause.expression,
-          expression_attribute_values: filter_clause.values
+          expression_attribute_values: filter_clause.values,
         }
       end
     end

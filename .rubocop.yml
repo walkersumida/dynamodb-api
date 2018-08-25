@@ -1,0 +1,7 @@
+AllCops:
+  TargetRubyVersion: 2.3
+require:
+  - rubocop-airbnb
+
+inherit_from:
+  - .rubocop_todo.yml

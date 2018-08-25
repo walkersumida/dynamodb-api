@@ -4,7 +4,7 @@ module Dynamodb
   module Api
     module Relation
       class ExpressionAttributeNames
-        attr_reader  :names
+        attr_reader :names
 
         def initialize(names)
           @names = names
@@ -13,4 +13,3 @@ module Dynamodb
     end
   end
 end
-

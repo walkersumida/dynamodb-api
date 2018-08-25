@@ -5,7 +5,7 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
     context 'single condition' do
       context 'value type is array' do
         let(:key_condition) do
-          ['maker', %w[Honda], 'EQ']
+          ['maker', %w(Honda), 'EQ']
         end
 
         it 'returns conditions for dynamodb' do
@@ -13,8 +13,8 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
             Dynamodb::Api::Relation::WhereClause.new(key_condition).key_conditions
           ).to eq(
             'maker' => {
-              attribute_value_list: %w[Honda],
-              comparison_operator: 'EQ'
+              attribute_value_list: %w(Honda),
+              comparison_operator: 'EQ',
             }
           )
         end
@@ -22,17 +22,17 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
 
       context 'value type is string' do
         let(:key_condition) do
-          [%w[maker Honda EQ]]
+          [%w(maker Honda EQ)]
         end
 
         it 'returns conditions for dynamodb' do
           expect(
-            Dynamodb::Api::Relation::WhereClause.new(key_condition)
-              .key_conditions
+            Dynamodb::Api::Relation::WhereClause.new(key_condition).
+              key_conditions
           ).to eq(
             'maker' => {
-              attribute_value_list: %w[Honda],
-              comparison_operator: 'EQ'
+              attribute_value_list: %w(Honda),
+              comparison_operator: 'EQ',
             }
           )
         end
@@ -42,7 +42,7 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
     context 'multiple conditions' do
       context 'value type is array' do
         let(:key_condition) do
-          [%w[maker Honda EQ], ['release_date', 19_980_101, 'GE']]
+          [%w(maker Honda EQ), ['release_date', 19_980_101, 'GE']]
         end
 
         it 'returns conditions for dynamodb' do
@@ -50,12 +50,12 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
             Dynamodb::Api::Relation::WhereClause.new(key_condition).key_conditions
           ).to eq(
             'maker' => {
-              attribute_value_list: %w[Honda],
-              comparison_operator: 'EQ'
+              attribute_value_list: %w(Honda),
+              comparison_operator: 'EQ',
             },
             'release_date' => {
               attribute_value_list: [19_980_101],
-              comparison_operator: 'GE'
+              comparison_operator: 'GE',
             }
           )
         end
