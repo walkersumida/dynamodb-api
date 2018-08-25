@@ -10,8 +10,8 @@ RSpec.describe Dynamodb::Api::Relation::FromClause do
       let(:table_name) { 'table_name' }
 
       it 'returns a table name' do
-        expect(Dynamodb::Api::Relation::FromClause.new(table_name).name)
-          .to eq table_name
+        expect(Dynamodb::Api::Relation::FromClause.new(table_name).name).
+          to eq table_name
       end
     end
 
@@ -23,8 +23,8 @@ RSpec.describe Dynamodb::Api::Relation::FromClause do
       let(:table_name) { 'table_name' }
 
       it 'returns a table name' do
-        expect(Dynamodb::Api::Relation::FromClause.new(table_name).name)
-          .to eq('prefix_' + table_name)
+        expect(Dynamodb::Api::Relation::FromClause.new(table_name).name).
+          to eq('prefix_' + table_name)
       end
     end
   end
