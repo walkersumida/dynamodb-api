@@ -14,6 +14,7 @@ require 'dynamodb/api/relation/where_clause'
 require 'dynamodb/api/relation/filter_clause'
 require 'dynamodb/api/relation/global_secondary_index'
 require 'dynamodb/api/relation/expression_attribute_names'
+require 'dynamodb/api/put/item'
 require 'dynamodb/api/delete/tables'
 
 module Dynamodb
@@ -30,6 +31,11 @@ module Dynamodb
 
     def drop_tables
       Delete::Tables.delete_tables
+    end
+
+    def insert(table_name, value)
+      # TODO: BatchWriteItem
+      Put::Item.put_item(value, table_name)
     end
   end
 end
