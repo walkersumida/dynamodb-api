@@ -2,9 +2,6 @@
 
 [![Build Status](https://travis-ci.org/walkersumida/dynamodb-api.svg?branch=master)](https://travis-ci.org/walkersumida/dynamodb-api)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dynamodb/api`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -24,9 +21,11 @@ Or install it yourself as:
 
 ## Configuration
 
+### Rails
+
 `config/initializers/dynamodb_api.rb`
 
-```
+```ruby
 Dynamodb::Api.config do |config|
   config.access_key_id = ''
   config.secret_access_key = ''
@@ -35,6 +34,88 @@ Dynamodb::Api.config do |config|
   config.index_name_prefix = ''
 end
 ```
+
+### Other
+
+```ruby
+Dynamodb::Api.config.access_key_id = ''
+Dynamodb::Api.config.secret_access_key = ''
+Dynamodb::Api.config.region = ''
+Dynamodb::Api.config.table_name_prefix = ''
+Dynamodb::Api.config.index_name_prefix = ''
+```
+
+## How to use
+e.g.
+
+cars table.
+
+| maker_id(Partition key) | model | release_date(Sort key) |
+|:---|:---|:---|
+|1 |Accord |0.19760508e8 |
+|2 |CROWN |0.19550101e8 |
+|3 |Model S |0.20120601e8 |
+|1 |S2000 |0.19980101e8 |
+
+### Query
+https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instance_method
+
+#### only Partition(Hash) key
+
+```ruby
+query = Dynamodb::Api::Query.new
+query.from('cars').index('index_maker_id_release_date')
+query.where(['maker_id', 1, 'EQ'])
+items = query.all.items
+```
+
+| maker_id | model | release_date |
+|:---|:---|:---|
+|1 |S2000 |0.19980101e8 |
+|1 |Accord |0.19760508e8 |
+
+#### Partition key and Sort(Range) key
+
+```ruby
+query = Dynamodb::Api::Query.new
+query.from('cars').index('index_maker_id_release_date')
+query.where([['maker_id', 1, 'EQ'], ['release_date', 19_980_101, 'GE']])
+items = query.all.items
+```
+
+| maker_id | model | release_date |
+|:---|:---|:---|
+|1 |S2000 |0.19980101e8 |
+
+#### Sorting
+
+```ruby
+query = Dynamodb::Api::Query.new
+query.from('cars').index('index_maker_id_release_date')
+query.where(['maker_id', 1, 'EQ'])
+query.order('asc') # default: 'desc'
+items = query.all.items
+```
+
+| maker_id | model | release_date |
+|:---|:---|:---|
+|1 |Accord |0.19760508e8 |
+|1 |S2000 |0.19980101e8 |
+
+#### filter
+
+```ruby
+query = Dynamodb::Api::Query.new
+query.from('cars').index('index_maker_id_release_date')
+query.where(['maker_id', 1, 'EQ'])
+query.filter('model = :model', ':model': 'S2000')
+items = query.all.items
+```
+
+| maker_id | model | release_date |
+|:---|:---|:---|
+|1 |S2000 |0.19980101e8 |
+
 
 ## Development
 
