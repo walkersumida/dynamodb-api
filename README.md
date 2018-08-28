@@ -64,8 +64,8 @@ https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instan
 
 ```ruby
 query = Dynamodb::Api::Query.new
-query.from('cars').index('index_maker_id_release_date')
-query.where(['maker_id', 1, 'EQ'])
+query.from('cars').index('index_maker_id_release_date').
+  where(['maker_id', 1, 'EQ'])
 items = query.all.items
 ```
 
@@ -78,8 +78,8 @@ items = query.all.items
 
 ```ruby
 query = Dynamodb::Api::Query.new
-query.from('cars').index('index_maker_id_release_date')
-query.where([['maker_id', 1, 'EQ'], ['release_date', 19_980_101, 'GE']])
+query.from('cars').index('index_maker_id_release_date').
+  where([['maker_id', 1, 'EQ'], ['release_date', 19_980_101, 'GE']])
 items = query.all.items
 ```
 
@@ -91,9 +91,9 @@ items = query.all.items
 
 ```ruby
 query = Dynamodb::Api::Query.new
-query.from('cars').index('index_maker_id_release_date')
-query.where(['maker_id', 1, 'EQ'])
-query.order('asc') # default: 'desc'
+query.from('cars').index('index_maker_id_release_date').
+  where(['maker_id', 1, 'EQ']).
+  order('asc') # default: 'desc'
 items = query.all.items
 ```
 
@@ -106,9 +106,9 @@ items = query.all.items
 
 ```ruby
 query = Dynamodb::Api::Query.new
-query.from('cars').index('index_maker_id_release_date')
-query.where(['maker_id', 1, 'EQ'])
-query.filter('model = :model', ':model': 'S2000')
+query.from('cars').index('index_maker_id_release_date').
+  where(['maker_id', 1, 'EQ']).
+  filter('model = :model', ':model': 'S2000')
 items = query.all.items
 ```
 
