@@ -14,6 +14,7 @@ require 'dynamodb/api/relation/where_clause'
 require 'dynamodb/api/relation/filter_clause'
 require 'dynamodb/api/relation/global_secondary_index'
 require 'dynamodb/api/relation/expression_attribute_names'
+require 'dynamodb/api/relation/limit_clause'
 require 'dynamodb/api/put/item'
 require 'dynamodb/api/delete/tables'
 

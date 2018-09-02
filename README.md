@@ -116,6 +116,20 @@ items = query.all.items
 |:---|:---|:---|
 |1 |S2000 |0.19980101e8 |
 
+#### Limit
+
+```ruby
+query = Dynamodb::Api::Query.new
+query.from('cars').index('index_maker_id_release_date').
+  where(['maker_id', 1, 'EQ']).
+  order('asc'). # default: 'desc'
+  limit(1)
+items = query.all.items
+```
+
+| maker_id | model | release_date |
+|:---|:---|:---|
+|1 |Accord |0.19760508e8 |
 
 ## Development
 

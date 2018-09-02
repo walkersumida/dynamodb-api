@@ -24,6 +24,7 @@ module Dynamodb
         if expression_attribute&.names
           build_params[:expression_attribute_names] = expression_attribute.names
         end
+        build_params[:limit] = limit_clause.number if limit_clause&.number
         build_params
       end
 
