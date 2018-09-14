@@ -60,7 +60,7 @@ cars table.
 ### Query
 https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instance_method
 
-#### only Partition(Hash) key
+#### Partition(Hash) key
 
 ```ruby
 query = Dynamodb::Api::Query.new
@@ -102,7 +102,7 @@ items = query.all.items
 |1 |Accord |0.19760508e8 |
 |1 |S2000 |0.19980101e8 |
 
-#### filter
+#### Filter
 
 ```ruby
 query = Dynamodb::Api::Query.new
