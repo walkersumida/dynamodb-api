@@ -17,6 +17,7 @@ require 'dynamodb/api/relation/expression_attribute_names'
 require 'dynamodb/api/relation/limit_clause'
 require 'dynamodb/api/put/item'
 require 'dynamodb/api/delete/tables'
+require 'dynamodb/api/map/operator'
 
 module Dynamodb
   module Api # :nodoc:

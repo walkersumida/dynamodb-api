@@ -7,8 +7,8 @@ module Dynamodb
         attr_reader :key_conditions
 
         KEY = 0
-        VALUE = 1
-        OPERATOR = 2
+        VALUE = 2
+        OPERATOR = 1
 
         def initialize(key_conditions)
           @key_conditions = build(key_conditions)
@@ -21,7 +21,7 @@ module Dynamodb
           conditions.each_with_object({}) do |c, h|
             h[c[KEY]] = {
               attribute_value_list: format_value(c[VALUE]),
-              comparison_operator: c[OPERATOR],
+              comparison_operator: Map::Operator.key(c[OPERATOR]),
             }
           end
         end
