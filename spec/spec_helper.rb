@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'dynamodb/api'
+require 'support/dynamodb_helper'
 require 'pry'
 
 ENV['ACCESS_KEY'] ||= 'abcd'
@@ -23,5 +24,11 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  config.before :each do
+    Dynamodb::Api.drop_tables
+    Dynamodb::Api.config.table_name_prefix = ''
+    Dynamodb::Api.config.index_name_prefix = ''
   end
 end
