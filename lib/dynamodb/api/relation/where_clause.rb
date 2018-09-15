@@ -21,7 +21,7 @@ module Dynamodb
           conditions.each_with_object({}) do |c, h|
             h[c[KEY]] = {
               attribute_value_list: format_value(c[VALUE]),
-              comparison_operator: c[OPERATOR],
+              comparison_operator: Map::Operator.key(c[OPERATOR]),
             }
           end
         end

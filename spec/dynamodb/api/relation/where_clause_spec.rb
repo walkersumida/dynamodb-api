@@ -5,7 +5,7 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
     context 'single condition' do
       context 'value type is array' do
         let(:key_condition) do
-          ['maker', 'EQ', %w(Honda)]
+          ['maker', '=', %w(Honda)]
         end
 
         it 'returns conditions for dynamodb' do
@@ -22,7 +22,7 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
 
       context 'value type is string' do
         let(:key_condition) do
-          [%w(maker EQ Honda)]
+          [%w(maker = Honda)]
         end
 
         it 'returns conditions for dynamodb' do
@@ -42,7 +42,7 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
     context 'multiple conditions' do
       context 'value type is array' do
         let(:key_condition) do
-          [%w(maker EQ Honda), ['release_date', 'GE', 19_980_101]]
+          [%w(maker = Honda), ['release_date', '>=', 19_980_101]]
         end
 
         it 'returns conditions for dynamodb' do
