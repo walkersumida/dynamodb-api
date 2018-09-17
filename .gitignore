@@ -13,4 +13,12 @@
 
 .DS_Store
 .ruby-version
+Gemfile.lock
+
+# For Ctags
 tags
+
+# For Appraisals
+gemfiles/*.gemfile.lock
+gemfiles/.bundle/*
+gemfiles/vendor/*
