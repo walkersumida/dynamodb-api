@@ -4,6 +4,10 @@ rvm:
   - 2.3
   - 2.4
   - 2.5
+gemfile:
+  - gemfiles/aws_sdk_2.gemfile
+  - gemfiles/aws_sdk_3.gemfile
+
 before_install: gem install bundler -v 1.16.2
 
 before_script:
