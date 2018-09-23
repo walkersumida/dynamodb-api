@@ -14,11 +14,7 @@ module Dynamodb
       private
 
       def build_query
-        build_params = {
-          table_name: from_clause.name,
-          index_name: index_clause.name,
-          key_conditions: where_clause.key_conditions,
-        }.merge(build_filter_clause)
+        build_params = base_params.merge(build_filter_clause)
         build_params[:scan_index_forward] = order_direct(order_clause)
         build_params[:select] = select_name(select_clause)
         if expression_attribute&.names
@@ -26,6 +22,14 @@ module Dynamodb
         end
         build_params[:limit] = limit_clause.number if limit_clause&.number
         build_params
+      end
+
+      def base_params
+        {
+          table_name: from_clause.name,
+          index_name: index_clause.name,
+          key_conditions: where_clause.key_conditions,
+        }
       end
 
       def order_direct(clause)
