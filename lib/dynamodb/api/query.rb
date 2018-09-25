@@ -6,6 +6,11 @@ module Dynamodb
   module Api
     class Query # :nodoc:
       include Relation
+      attr_accessor :reserved_words
+
+      def initialize
+        @reserved_words = ReservedWords.new
+      end
 
       def all
         Adapter.client.query(build_query)

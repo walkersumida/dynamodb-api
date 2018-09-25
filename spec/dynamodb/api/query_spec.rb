@@ -1,4 +1,11 @@
 RSpec.describe Dynamodb::Api::Query do
+  describe '#initialize' do
+    it 'works' do
+      query = Dynamodb::Api::Query.new
+      expect(query.reserved_words.all.count).to eq(573)
+    end
+  end
+
   describe '#all' do
     before do
       items = [

@@ -18,6 +18,7 @@ require 'dynamodb/api/relation/limit_clause'
 require 'dynamodb/api/put/item'
 require 'dynamodb/api/delete/tables'
 require 'dynamodb/api/map/operator'
+require 'dynamodb/api/reserved_words'
 
 module Dynamodb
   module Api # :nodoc:
