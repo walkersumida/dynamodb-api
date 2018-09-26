@@ -38,5 +38,16 @@ RSpec.describe Dynamodb::Api::Query do
         expect(items.count).to eq(1)
       end
     end
+
+    context 'filter clause' do
+      it 'works' do
+        query = Dynamodb::Api::Query.new
+        query.from('cars').index('index_maker_id_release_date').
+          where(['maker_id', '=', 1]).
+          filter('model = :model', ':model': 'S2000')
+        items = query.all.items
+        expect(items.count).to eq(1)
+      end
+    end
   end
 end
