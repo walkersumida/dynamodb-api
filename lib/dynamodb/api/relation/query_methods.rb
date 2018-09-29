@@ -34,11 +34,6 @@ module Dynamodb
           self
         end
 
-        def ex_attr(names)
-          self.expression_attribute = Relation::ExpressionAttributeNames.new(names)
-          self
-        end
-
         def limit(value)
           self.limit_clause = Relation::LimitClause.new(value)
           self

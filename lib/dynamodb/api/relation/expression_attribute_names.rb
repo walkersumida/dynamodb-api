@@ -6,7 +6,7 @@ module Dynamodb
       class ExpressionAttributeNames
         attr_accessor :names
 
-        def initialize(names)
+        def initialize(names = {})
           self.names = {}
 
           case names.class.to_s

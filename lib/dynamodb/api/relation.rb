@@ -12,8 +12,16 @@ module Dynamodb
       attr_accessor :order_clause
       attr_accessor :where_clause
       attr_accessor :filter_clause
-      attr_accessor :expression_attribute
+      attr_accessor :attr_expression_attribute
       attr_accessor :limit_clause
+
+      def expression_attribute
+        if attr_expression_attribute.nil?
+          self.attr_expression_attribute = Relation::ExpressionAttributeNames.new
+        else
+          attr_expression_attribute
+        end
+      end
     end
   end
 end
