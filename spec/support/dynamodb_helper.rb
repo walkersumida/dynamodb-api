@@ -36,12 +36,7 @@ class DynamodbHelper
     client = Dynamodb::Api::Adapter.client
     (@items || default_items).each do |item|
       client.put_item(
-        item: {
-          'maker_id' => item[:maker_id],
-          'maker' => item[:maker],
-          'model' => item[:model],
-          'release_date' => item[:release_date],
-        },
+        item: item,
         table_name: 'cars'
       )
     end
