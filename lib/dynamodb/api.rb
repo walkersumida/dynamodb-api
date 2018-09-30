@@ -1,5 +1,6 @@
 require 'aws-sdk'
 require 'active_support'
+require 'active_support/core_ext'
 
 require 'dynamodb/api/version'
 require 'dynamodb/api/config'
