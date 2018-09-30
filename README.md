@@ -50,12 +50,12 @@ e.g.
 
 cars table.
 
-| maker_id(Partition key) | model | release_date(Sort key) |
-|:---|:---|:---|
-|1 |Accord |0.19760508e8 |
-|2 |CROWN |0.19550101e8 |
-|3 |Model S |0.20120601e8 |
-|1 |S2000 |0.19980101e8 |
+| maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|
+|1 |Accord |0.19760508e8 |0 |
+|2 |CROWN |0.19550101e8 |0 |
+|3 |Model S |0.20120601e8 |0 |
+|1 |S2000 |0.19980101e8 |1 |
 
 ### Query
 https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instance_method
@@ -69,10 +69,10 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id | model | release_date |
-|:---|:---|:---|
-|1 |S2000 |0.19980101e8 |
-|1 |Accord |0.19760508e8 |
+| maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|
+|1 |S2000 |0.19980101e8 |1 |
+|1 |Accord |0.19760508e8 |0 |
 
 #### Partition key and Sort(Range) key
 
@@ -83,9 +83,9 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id | model | release_date |
-|:---|:---|:---|
-|1 |S2000 |0.19980101e8 |
+| maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|
+|1 |S2000 |0.19980101e8 |1 |
 
 #### Sorting
 
@@ -97,10 +97,10 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id | model | release_date |
-|:---|:---|:---|
-|1 |Accord |0.19760508e8 |
-|1 |S2000 |0.19980101e8 |
+| maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|
+|1 |Accord |0.19760508e8 |0 |
+|1 |S2000 |0.19980101e8 |1 |
 
 #### Filter
 
@@ -112,9 +112,9 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id | model | release_date |
-|:---|:---|:---|
-|1 |S2000 |0.19980101e8 |
+| maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|
+|1 |S2000 |0.19980101e8 |1 |
 
 #### Limit
 
@@ -127,9 +127,32 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id | model | release_date |
-|:---|:---|:---|
-|1 |Accord |0.19760508e8 |
+| maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|
+|1 |Accord |0.19760508e8 |0 |
+
+#### Expression Attribute Names
+
+Words reserved in DynamoDB can not be used without special processing.
+In `dynamodb-api` , you can omit the special processing by putting `#` at the beginning of the word.
+Refer to the list of reserved words from [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html).
+
+```ruby
+query = Dynamodb::Api::Query.new
+query.from('cars').index('index_maker_id_release_date').
+  where(['maker_id', '=', 1]).
+  filter('#status = :status', ':status': 1)
+items = query.all.items
+```
+
+| maker_id | model | release_date | status |
+|:---|:---|:---|:---|
+|1 |S2000 |0.19980101e8 |1 |
+
+If you don't add `#` to a reserved word, the following error will occur:
+
+    Aws::DynamoDB::Errors::ValidationException:
+      Invalid FilterExpression: Attribute name is a reserved keyword; reserved keyword: [reserved word]
 
 ## Development
 
