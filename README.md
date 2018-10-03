@@ -63,7 +63,7 @@ https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instan
 #### Partition(Hash) key
 
 ```ruby
-query = Dynamodb::Api::Query.new
+query = Dynamodb::Api.query
 query.from('cars').index('index_maker_id_release_date').
   where(['maker_id', '=', 1])
 items = query.all.items
@@ -77,7 +77,7 @@ items = query.all.items
 #### Partition key and Sort(Range) key
 
 ```ruby
-query = Dynamodb::Api::Query.new
+query = Dynamodb::Api.query
 query.from('cars').index('index_maker_id_release_date').
   where([['maker_id', '=', 1], ['release_date', '>=', 19_980_101]])
 items = query.all.items
@@ -90,7 +90,7 @@ items = query.all.items
 #### Sorting
 
 ```ruby
-query = Dynamodb::Api::Query.new
+query = Dynamodb::Api.query
 query.from('cars').index('index_maker_id_release_date').
   where(['maker_id', '=', 1]).
   order('asc') # default: 'desc'
@@ -105,7 +105,7 @@ items = query.all.items
 #### Filter
 
 ```ruby
-query = Dynamodb::Api::Query.new
+query = Dynamodb::Api.query
 query.from('cars').index('index_maker_id_release_date').
   where(['maker_id', '=', 1]).
   filter('model = :model', ':model': 'S2000')
@@ -119,7 +119,7 @@ items = query.all.items
 #### Limit
 
 ```ruby
-query = Dynamodb::Api::Query.new
+query = Dynamodb::Api.query
 query.from('cars').index('index_maker_id_release_date').
   where(['maker_id', '=', 1]).
   order('asc'). # default: 'desc'
@@ -138,14 +138,14 @@ In `dynamodb-api` , you can omit the special processing by putting `#` at the be
 Refer to the list of reserved words from [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html).
 
 ```ruby
-query = Dynamodb::Api::Query.new
+query = Dynamodb::Api.query
 query.from('cars').index('index_maker_id_release_date').
   where(['maker_id', '=', 1]).
   filter('#status = :status', ':status': 1)
 items = query.all.items
 ```
 
-| maker_id | model | release_date | status |
+| maker_id(Partition key) | model | release_date(Sort key) | status |
 |:---|:---|:---|:---|
 |1 |S2000 |0.19980101e8 |1 |
 
