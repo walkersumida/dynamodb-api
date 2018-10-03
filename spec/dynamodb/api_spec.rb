@@ -29,6 +29,12 @@ RSpec.describe Dynamodb::Api do
     end
   end
 
+  describe '#query' do
+    it 'returns a Dynamodb::Api::Query class' do
+      expect(Dynamodb::Api.query.class).to eq(Dynamodb::Api::Query)
+    end
+  end
+
   describe '#insert' do
     subject { Dynamodb::Api.insert(table_name, item) }
 

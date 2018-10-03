@@ -12,7 +12,7 @@ RSpec.describe Dynamodb::Api::Query do
 
     context 'where clause' do
       it 'works(only hash key)' do
-        query = Dynamodb::Api::Query.new
+        query = Dynamodb::Api.query
         query.from('cars').index('index_maker_id_release_date').
           where(['maker_id', '=', 1])
         items = query.all.items
@@ -20,7 +20,7 @@ RSpec.describe Dynamodb::Api::Query do
       end
 
       it 'works(hash/range key)' do
-        query = Dynamodb::Api::Query.new
+        query = Dynamodb::Api.query
         query.from('cars').index('index_maker_id_release_date').
           where([['maker_id', '=', 1], ['release_date', '>=', 19980101]])
         items = query.all.items
@@ -30,7 +30,7 @@ RSpec.describe Dynamodb::Api::Query do
 
     context 'limit clause' do
       it 'works' do
-        query = Dynamodb::Api::Query.new
+        query = Dynamodb::Api.query
         query.from('cars').index('index_maker_id_release_date').
           where(['maker_id', '=', 1]).
           limit(1)
@@ -41,7 +41,7 @@ RSpec.describe Dynamodb::Api::Query do
 
     context 'filter clause' do
       it 'works' do
-        query = Dynamodb::Api::Query.new
+        query = Dynamodb::Api.query
         query.from('cars').index('index_maker_id_release_date').
           where(['maker_id', '=', 1]).
           filter('model = :model', ':model': 'S2000')
@@ -52,7 +52,7 @@ RSpec.describe Dynamodb::Api::Query do
 
     context 'expression attribute names' do
       it 'works' do
-        query = Dynamodb::Api::Query.new
+        query = Dynamodb::Api.query
         query.from('cars').index('index_maker_id_release_date').
           where(['maker_id', '=', 1]).
           filter('#status = :status', ':status': 1)
