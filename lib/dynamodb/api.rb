@@ -36,6 +36,10 @@ module Dynamodb
       Delete::Tables.delete_tables
     end
 
+    def query
+      Query.new
+    end
+
     def insert(table_name, value)
       # TODO: BatchWriteItem
       Put::Item.put_item(value, table_name)
