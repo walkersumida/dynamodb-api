@@ -47,7 +47,7 @@ RSpec.describe Dynamodb::Api do
       { maker_id: 1, maker: 'Honda', model: 'NSX', release_date: 19900914 }
     end
     let(:result) do
-      query = Dynamodb::Api::Query.new
+      query = Dynamodb::Api.query
       query.from('cars').index('index_maker_id_release_date')
       query.where(['maker_id', 'EQ', 1])
       query.all.items.detect { |i| i['model'] == 'NSX' }
