@@ -18,6 +18,7 @@ require 'dynamodb/api/relation/expression_attribute_names'
 require 'dynamodb/api/relation/limit_clause'
 require 'dynamodb/api/put/item'
 require 'dynamodb/api/delete/tables'
+require 'dynamodb/api/delete/item'
 require 'dynamodb/api/map/operator'
 
 module Dynamodb
@@ -43,6 +44,10 @@ module Dynamodb
     def insert(table_name, value)
       # TODO: BatchWriteItem
       Put::Item.put_item(value, table_name)
+    end
+
+    def delete(table_name, key)
+      Delete::Item.delete(key, table_name)
     end
   end
 end
