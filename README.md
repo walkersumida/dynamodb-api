@@ -161,6 +161,21 @@ key = { model: 'NSX', release_date: 19900914 }
 Dynamodb::Api.delete('cars', key)
 ```
 
+### Other API operations
+
+`client` returns the `<Aws::DynamoDB::Client>` .
+So, you can use all [API operations](https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html).
+
+```ruby
+client = Dynamodb::Api::Adapter.client # <Aws::DynamoDB::Client>
+
+# e.g.
+client.create_backup(
+  table_name: 'TableName', # required
+  backup_name: 'BackupName', # required
+)
+```
+
 ## Development
 
 - Run `docker-compose up` to run the dynamodb_local.
