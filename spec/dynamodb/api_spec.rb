@@ -47,7 +47,7 @@ RSpec.describe Dynamodb::Api do
       { maker_id: 1, maker: 'Honda', model: 'NSX', release_date: 19900914 }
     end
     let(:result) do
-      query = Dynamodb::Api::Query.new
+      query = Dynamodb::Api.query
       query.from('cars').index('index_maker_id_release_date')
       query.where(['maker_id', 'EQ', 1])
       query.all.items.detect { |i| i['model'] == 'NSX' }
@@ -56,6 +56,35 @@ RSpec.describe Dynamodb::Api do
     it 'works' do
       is_expected
       expect(result['model']).to eq('NSX')
+    end
+  end
+
+  describe '#delete' do
+    subject { Dynamodb::Api.delete(table_name, item) }
+
+    before do
+      items = [
+        { maker_id: 1, maker: 'Honda', model: 'Accord', release_date: 19760508, status: 0 },
+        { maker_id: 1, maker: 'Honda', model: 'S2000', release_date: 19980101, status: 1 },
+      ]
+      DynamodbHelper.new.create_dummy_data(items)
+    end
+
+    let(:table_name) { 'cars' }
+    let(:item) do
+      { model: 'S2000', release_date: 19980101 }
+    end
+    let(:results) do
+      query = Dynamodb::Api.query
+      query.from('cars').index('index_maker_id_release_date')
+      query.where(['maker_id', 'EQ', 1])
+      query.all.items
+    end
+
+    it 'works' do
+      is_expected
+      expect(results.detect { |i| i['model'] == 'S2000' }).to eq(nil)
+      expect(results.count).to eq(1)
     end
   end
 end
