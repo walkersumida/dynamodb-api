@@ -47,7 +47,7 @@ module Dynamodb
     end
 
     def delete(table_name, key)
-      Delete::Item.delete(key, table_name)
+      Delete::Item.delete_item(key, table_name)
     end
   end
 end
