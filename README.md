@@ -154,6 +154,13 @@ If you don't add `#` to a reserved word, the following error will occur:
     Aws::DynamoDB::Errors::ValidationException:
       Invalid FilterExpression: Attribute name is a reserved keyword; reserved keyword: [reserved word]
 
+### Delete
+
+```ruby
+key = { model: 'NSX', release_date: 19900914 }
+Dynamodb::Api.delete('cars', key)
+```
+
 ## Development
 
 - Run `docker-compose up` to run the dynamodb_local.
