@@ -154,6 +154,13 @@ If you don't add `#` to a reserved word, the following error will occur:
     Aws::DynamoDB::Errors::ValidationException:
       Invalid FilterExpression: Attribute name is a reserved keyword; reserved keyword: [reserved word]
 
+### Insert
+
+```ruby
+item = { maker_id: 1, maker: 'Honda', model: 'NSX', release_date: 19900914 }
+Dynamodb::Api.insert('cars', item)
+```
+
 ### Delete
 
 ```ruby
