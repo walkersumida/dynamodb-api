@@ -20,6 +20,7 @@ require 'dynamodb/api/put/item'
 require 'dynamodb/api/delete/tables'
 require 'dynamodb/api/delete/item'
 require 'dynamodb/api/map/operator'
+require 'dynamodb/api/update/item'
 
 module Dynamodb
   module Api # :nodoc:
@@ -44,6 +45,10 @@ module Dynamodb
     def insert(table_name, value)
       # TODO: BatchWriteItem
       Put::Item.put_item(value, table_name)
+    end
+
+    def update(table_name, key, value)
+      Update::Item.new.update_item(key, value, table_name)
     end
 
     def delete(table_name, key)
