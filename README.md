@@ -161,6 +161,14 @@ item = { maker_id: 1, maker: 'Honda', model: 'NSX', release_date: 19900914 }
 Dynamodb::Api.insert('cars', item)
 ```
 
+### Update
+
+```ruby
+key = { model: 'NSX', release_date: 19900914 }
+value = { new_col: 'new' }
+Dynamodb::Api.update('cars', key, value)
+```
+
 ### Delete
 
 ```ruby
