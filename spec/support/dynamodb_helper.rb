@@ -44,10 +44,10 @@ class DynamodbHelper
 
   def default_items
     [
-      { maker_id: 1, maker: 'Honda', model: 'Accord', release_date: 19760508 },
-      { maker_id: 2, maker: 'Toyota', model: 'CROWN', release_date: 19550101 },
-      { maker_id: 3, maker: 'Tesla', model: 'Model S', release_date: 20120601 },
-      { maker_id: 1, maker: 'Honda', model: 'S2000', release_date: 19980101 },
+      { id: '1', maker_id: 1, maker: 'Honda', model: 'Accord', release_date: 19760508 },
+      { id: '2', maker_id: 2, maker: 'Toyota', model: 'CROWN', release_date: 19550101 },
+      { id: '3', maker_id: 3, maker: 'Tesla', model: 'Model S', release_date: 20120601 },
+      { id: '4', maker_id: 1, maker: 'Honda', model: 'S2000', release_date: 19980101 },
     ]
   end
 
@@ -55,12 +55,12 @@ class DynamodbHelper
   def attribute_definitions
     [
       {
-        attribute_name: 'maker_id',
-        attribute_type: 'N',
+        attribute_name: 'id',
+        attribute_type: 'S',
       },
       {
-        attribute_name: 'model',
-        attribute_type: 'S',
+        attribute_name: 'maker_id',
+        attribute_type: 'N',
       },
       {
         attribute_name: 'release_date',
@@ -72,12 +72,8 @@ class DynamodbHelper
   def key_schema
     [
       {
-        attribute_name: 'model',
+        attribute_name: 'id',
         key_type: 'HASH',
-      },
-      {
-        attribute_name: 'release_date',
-        key_type: 'RANGE',
       },
     ]
   end

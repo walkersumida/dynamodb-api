@@ -6,15 +6,19 @@ RSpec.describe Dynamodb::Api::Delete::Item do
 
     before do
       items = [
-        { maker_id: 1, maker: 'Honda', model: 'Accord', release_date: 19760508, status: 0 },
-        { maker_id: 1, maker: 'Honda', model: 'S2000', release_date: 19980101, status: 1 },
+        {
+          id: '1', maker_id: 1, maker: 'Honda', model: 'Accord', release_date: 19760508, status: 0,
+        },
+        {
+          id: '4', maker_id: 1, maker: 'Honda', model: 'S2000', release_date: 19980101, status: 1,
+        },
       ]
       DynamodbHelper.new.create_dummy_data(items)
     end
 
     let(:table_name) { 'cars' }
     let(:item) do
-      { model: 'S2000', release_date: 19980101 }
+      { id: '4' }
     end
     let(:results) do
       query = Dynamodb::Api.query
