@@ -50,12 +50,12 @@ e.g.
 
 cars table.
 
-| maker_id(Partition key) | model | release_date(Sort key) | status |
-|:---|:---|:---|:---|
-|1 |Accord |0.19760508e8 |0 |
-|2 |CROWN |0.19550101e8 |0 |
-|3 |Model S |0.20120601e8 |0 |
-|1 |S2000 |0.19980101e8 |1 |
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|1 |1 |Accord |0.19760508e8 |0 |
+|2 |2 |CROWN |0.19550101e8 |0 |
+|3 |3 |Model S |0.20120601e8 |0 |
+|4 |1 |S2000 |0.19980101e8 |1 |
 
 ### Query
 https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instance_method
@@ -69,10 +69,10 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id(Partition key) | model | release_date(Sort key) | status |
-|:---|:---|:---|:---|
-|1 |S2000 |0.19980101e8 |1 |
-|1 |Accord |0.19760508e8 |0 |
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|4 |1 |S2000 |0.19980101e8 |1 |
+|1 |1 |Accord |0.19760508e8 |0 |
 
 #### Partition key and Sort(Range) key
 
@@ -83,9 +83,9 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id(Partition key) | model | release_date(Sort key) | status |
-|:---|:---|:---|:---|
-|1 |S2000 |0.19980101e8 |1 |
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|4 |1 |S2000 |0.19980101e8 |1 |
 
 #### Sorting
 
@@ -97,10 +97,10 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id(Partition key) | model | release_date(Sort key) | status |
-|:---|:---|:---|:---|
-|1 |Accord |0.19760508e8 |0 |
-|1 |S2000 |0.19980101e8 |1 |
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|1 |1 |Accord |0.19760508e8 |0 |
+|4 |1 |S2000 |0.19980101e8 |1 |
 
 #### Filter
 
@@ -112,9 +112,9 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id(Partition key) | model | release_date(Sort key) | status |
-|:---|:---|:---|:---|
-|1 |S2000 |0.19980101e8 |1 |
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|4 |1 |S2000 |0.19980101e8 |1 |
 
 #### Limit
 
@@ -127,9 +127,9 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id(Partition key) | model | release_date(Sort key) | status |
-|:---|:---|:---|:---|
-|1 |Accord |0.19760508e8 |0 |
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|1 |1 |Accord |0.19760508e8 |0 |
 
 #### Expression Attribute Names
 
@@ -145,9 +145,9 @@ query.from('cars').index('index_maker_id_release_date').
 items = query.all.items
 ```
 
-| maker_id(Partition key) | model | release_date(Sort key) | status |
-|:---|:---|:---|:---|
-|1 |S2000 |0.19980101e8 |1 |
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|4 |1 |S2000 |0.19980101e8 |1 |
 
 If you don't add `#` to a reserved word, the following error will occur:
 
@@ -157,14 +157,14 @@ If you don't add `#` to a reserved word, the following error will occur:
 ### Insert
 
 ```ruby
-item = { maker_id: 1, maker: 'Honda', model: 'NSX', release_date: 19900914 }
+item = { id: '5', maker_id: 1, maker: 'Honda', model: 'NSX', release_date: 19900914 }
 Dynamodb::Api.insert('cars', item)
 ```
 
 ### Update
 
 ```ruby
-key = { model: 'NSX', release_date: 19900914 }
+key = { id: '5' }
 value = { new_col: 'new' }
 Dynamodb::Api.update('cars', key, value)
 ```
@@ -172,7 +172,7 @@ Dynamodb::Api.update('cars', key, value)
 ### Delete
 
 ```ruby
-key = { model: 'NSX', release_date: 19900914 }
+key = { id: '5' }
 Dynamodb::Api.delete('cars', key)
 ```
 

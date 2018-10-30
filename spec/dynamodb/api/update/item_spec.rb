@@ -10,13 +10,17 @@ RSpec.describe Dynamodb::Api::Update::Item do
 
     let(:items) do
       [
-        { maker_id: 1, maker: 'Honda', model: 'Accord', release_date: 19760508, status: 0 },
-        { maker_id: 1, maker: 'Honda', model: 'S2000', release_date: 19980101, status: 1 },
+        {
+          id: '1', maker_id: 1, maker: 'Honda', model: 'Accord', release_date: 19760508, status: 0,
+        },
+        {
+          id: '4', maker_id: 1, maker: 'Honda', model: 'S2000', release_date: 19980101, status: 1,
+        },
       ]
     end
     let(:table_name) { 'cars' }
     let(:key) do
-      { model: 'Accord', release_date: 19760508 }
+      { id: '1' }
     end
     let(:item) do
       { status: 1, new_col: 'new' }

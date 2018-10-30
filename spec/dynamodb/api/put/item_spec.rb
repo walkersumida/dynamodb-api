@@ -10,7 +10,7 @@ RSpec.describe Dynamodb::Api::Put::Item do
 
     let(:table_name) { 'cars' }
     let(:item) do
-      { maker_id: 1, maker: 'Honda', model: 'NSX', release_date: 19900914 }
+      { id: '5', maker_id: 1, maker: 'Honda', model: 'NSX', release_date: 19900914 }
     end
     let(:result) do
       query = Dynamodb::Api.query
