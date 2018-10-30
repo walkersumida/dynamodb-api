@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- [#25](https://github.com/walkersumida/dynamodb-api/pull/25) `update` method
 - [#24](https://github.com/walkersumida/dynamodb-api/pull/24) `delete` method
 - [#23](https://github.com/walkersumida/dynamodb-api/pull/23) `query` method
 
