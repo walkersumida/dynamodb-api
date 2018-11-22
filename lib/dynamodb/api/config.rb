@@ -12,6 +12,7 @@ module Dynamodb
       option :secret_access_key, default: nil
       option :region, default: nil
       option :endpoint, default: nil
+      option :retry_limit, default: 10
       option :table_name_prefix, default: ''
       option :index_name_prefix, default: ''
     end
