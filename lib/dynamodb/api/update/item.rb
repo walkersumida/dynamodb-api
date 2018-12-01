@@ -3,14 +3,9 @@
 module Dynamodb
   module Api
     module Update
-      class Item # :nodoc:
+      class Item < Base # :nodoc:
         def update_item(key, cols, table_name)
-          @key = key
-          @cols = cols
-          @table_name = table_name
-
-          client = Adapter.client
-          client.update_item(build_update_clause)
+          super(key, cols, table_name)
         end
 
         private

@@ -20,6 +20,7 @@ require 'dynamodb/api/put/item'
 require 'dynamodb/api/delete/tables'
 require 'dynamodb/api/delete/item'
 require 'dynamodb/api/map/operator'
+require 'dynamodb/api/update/base'
 require 'dynamodb/api/update/item'
 
 module Dynamodb
