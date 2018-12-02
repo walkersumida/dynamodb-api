@@ -56,5 +56,9 @@ module Dynamodb
     def delete(table_name, key)
       Delete::Item.delete_item(key, table_name)
     end
+
+    def remove_attributes(table_name, key, attrs)
+      Update::Attributes.new.remove_attributes(key, attrs, table_name)
+    end
   end
 end
