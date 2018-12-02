@@ -22,6 +22,7 @@ require 'dynamodb/api/delete/item'
 require 'dynamodb/api/map/operator'
 require 'dynamodb/api/update/base'
 require 'dynamodb/api/update/item'
+require 'dynamodb/api/update/attributes'
 
 module Dynamodb
   module Api # :nodoc:
