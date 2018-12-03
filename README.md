@@ -176,6 +176,23 @@ key = { id: '5' }
 Dynamodb::Api.delete('cars', key)
 ```
 
+### Remove attributes [Unreleased]
+
+```ruby
+key = { id: '3' }
+attributes = ['status']
+Dynamodb::Api.remove_attributes('cars', key, attributes)
+
+query = Dynamodb::Api.query
+query.from('cars').index('index_maker_id_release_date').
+  where(['maker_id', '=', 3])
+items = query.all.items
+```
+
+| id | maker_id(Partition key) | model | release_date(Sort key) |
+|:---|:---|:---|:---|
+|3 |3 |Model S |0.20120601e8 |
+
 ### Other API operations
 
 `client` returns the `<Aws::DynamoDB::Client>` .
