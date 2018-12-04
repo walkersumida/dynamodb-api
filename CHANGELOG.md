@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+- [#32](https://github.com/walkersumida/dynamodb-api/pull/32) `remove_attributes` method
+
 ## [0.6.1] - 2018-11-22
 ### Added
 - [#30](https://github.com/walkersumida/dynamodb-api/pull/30) `retry_limit` option(default: 10)
