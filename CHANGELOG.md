@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.6.2] - 2018-12-13
 ### Added
 - [#32](https://github.com/walkersumida/dynamodb-api/pull/32) `remove_attributes` method
 

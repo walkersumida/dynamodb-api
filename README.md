@@ -176,7 +176,7 @@ key = { id: '5' }
 Dynamodb::Api.delete('cars', key)
 ```
 
-### Remove attributes [Unreleased]
+### Remove attributes
 
 ```ruby
 key = { id: '3' }
