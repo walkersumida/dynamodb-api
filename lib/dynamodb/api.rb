@@ -7,6 +7,7 @@ require 'dynamodb/api/config'
 require 'dynamodb/api/adapter'
 require 'dynamodb/api/base'
 require 'dynamodb/api/query'
+require 'dynamodb/api/scan'
 require 'dynamodb/api/relation'
 require 'dynamodb/api/relation/query_methods'
 require 'dynamodb/api/relation/from_clause'
@@ -39,6 +40,10 @@ module Dynamodb
 
     def drop_tables
       Delete::Tables.delete_tables
+    end
+
+    def scan
+      Scan.new
     end
 
     def query
