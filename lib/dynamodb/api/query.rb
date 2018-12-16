@@ -5,6 +5,10 @@ require 'dynamodb/api/relation'
 module Dynamodb
   module Api
     class Query < Base # :nodoc:
+      def all
+        Adapter.client.query(build_query)
+      end
+
       private
 
       def build_query

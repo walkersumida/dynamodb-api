@@ -8,7 +8,7 @@ module Dynamodb
       include Relation
 
       def all
-        Adapter.client.query(build_query)
+        raise NotImplementedError, "You must implement #{self.class}##{__method__}"
       end
 
       private
