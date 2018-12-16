@@ -4,13 +4,7 @@ require 'dynamodb/api/relation'
 
 module Dynamodb
   module Api
-    class Query # :nodoc:
-      include Relation
-
-      def all
-        Adapter.client.query(build_query)
-      end
-
+    class Query < Base # :nodoc:
       private
 
       def build_query
@@ -28,31 +22,6 @@ module Dynamodb
           index_name: index_clause.name,
           key_conditions: where_clause.key_conditions,
         }
-      end
-
-      def order_direct(clause)
-        clause&.direct ? clause.direct : OrderClause.new.direct
-      end
-
-      def select_name(clause)
-        clause&.name ? clause.name : SelectClause.new.name
-      end
-
-      def build_filter_clause
-        return {} if filter_clause&.expression.blank?
-        {
-          filter_expression: filter_clause.expression,
-          expression_attribute_values: filter_clause.values,
-        }
-      end
-
-      def build_expression_attribute_names(params)
-        if filter_clause&.reserved_words.present?
-          expression_attribute.add(filter_clause.reserved_words)
-        end
-        if expression_attribute.names.present?
-          params[:expression_attribute_names] = expression_attribute.names
-        end
       end
     end
   end
