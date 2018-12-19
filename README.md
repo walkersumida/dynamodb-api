@@ -57,7 +57,7 @@ cars table.
 |3 |3 |Model S |0.20120601e8 |0 |
 |4 |1 |S2000 |0.19980101e8 |1 |
 
-### Scan
+### [Unreleased] Scan
 
 ```ruby
 scan = Dynamodb::Api.scan
