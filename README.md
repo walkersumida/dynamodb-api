@@ -57,6 +57,14 @@ cars table.
 |3 |3 |Model S |0.20120601e8 |0 |
 |4 |1 |S2000 |0.19980101e8 |1 |
 
+### [Unreleased] Scan
+
+```ruby
+scan = Dynamodb::Api.scan
+scan.from('cars')
+items = scan.all.items
+```
+
 ### Query
 https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instance_method
 
