@@ -57,13 +57,22 @@ cars table.
 |3 |3 |Model S |0.20120601e8 |0 |
 |4 |1 |S2000 |0.19980101e8 |1 |
 
-### [Unreleased] Scan
+### Scan
+
+Scan returns items in random order.
 
 ```ruby
 scan = Dynamodb::Api.scan
 scan.from('cars')
 items = scan.all.items
 ```
+
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|1 |1 |Accord |0.19760508e8 |0 |
+|2 |2 |CROWN |0.19550101e8 |0 |
+|3 |3 |Model S |0.20120601e8 |0 |
+|4 |1 |S2000 |0.19980101e8 |1 |
 
 ### Query
 https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instance_method
