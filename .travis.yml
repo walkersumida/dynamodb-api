@@ -8,7 +8,12 @@ gemfile:
   - gemfiles/aws_sdk_2.gemfile
   - gemfiles/aws_sdk_3.gemfile
 
-before_install: gem install bundler -v 1.16.2
+before_install:
+  - |
+    if [[ ${RUBY_VERSION} =~ ^ruby-2.3 ]]; then
+      gem uninstall -i /home/travis/.rvm/gems/${RUBY_VERSION}@global bundler -x
+    fi
+  - gem install bundler -v 1.16.2
 
 before_script:
   - docker-compose up -d
