@@ -6,6 +6,7 @@ module Dynamodb
   module Api
     class Base # :nodoc:
       include Relation
+      attr_accessor :last_evaluated_key
 
       def all
         raise NotImplementedError, "You must implement #{self.class}##{__method__}"
