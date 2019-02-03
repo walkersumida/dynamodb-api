@@ -68,4 +68,28 @@ RSpec.describe Dynamodb::Api::Scan do
       end
     end
   end
+
+  describe '#next' do
+    context 'exists last_evaluated_key' do
+      it 'returns next items' do
+        scan = Dynamodb::Api.scan
+        scan.from('cars').
+          limit(2)
+        result = scan.all
+        expect(result.items.map { |i| i['id'] }).to eq(%w(1 4))
+        result = scan.next
+        expect(result.items.map { |i| i['id'] }).to eq(%w(3 2))
+      end
+    end
+
+    context 'not exists last_evaluated_key' do
+      it 'returns nil' do
+        scan = Dynamodb::Api.scan
+        scan.from('cars')
+        _result = scan.all
+        result = scan.next
+        expect(result).to be nil
+      end
+    end
+  end
 end
