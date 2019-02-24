@@ -69,4 +69,31 @@ RSpec.describe Dynamodb::Api::Query do
       end
     end
   end
+
+  describe '#next' do
+    context 'exists last_evaluated_key' do
+      it 'returns next items' do
+        query = Dynamodb::Api.query
+        query.from('cars').index('index_maker_id_release_date').
+          where(['maker_id', '=', 1]).
+          limit(1)
+        result = query.all
+        expect(result.items.map { |i| i['id'] }).to eq(%w(4))
+        result = query.next
+        expect(result.items.map { |i| i['id'] }).to eq(%w(1))
+      end
+    end
+
+    context 'not exists last_evaluated_key' do
+      it 'returns nil' do
+        query = Dynamodb::Api.query
+        query.from('cars').index('index_maker_id_release_date').
+          where(['maker_id', '=', 1]).
+          limit(2)
+        _result = query.all
+        result = query.next
+        expect(result).to be nil
+      end
+    end
+  end
 end
