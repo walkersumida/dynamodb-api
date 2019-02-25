@@ -6,7 +6,19 @@ module Dynamodb
   module Api
     class Query < Base # :nodoc:
       def all
-        Adapter.client.query(build_query)
+        result = Adapter.client.query(build_query)
+        @last_evaluated_key = result.last_evaluated_key
+        result
+      end
+
+      def next
+        return nil if @last_evaluated_key.blank?
+        result = Adapter.client.query(
+          build_query.merge(exclusive_start_key: @last_evaluated_key)
+        )
+        @last_evaluated_key = result.last_evaluated_key
+        return nil if result.count.zero?
+        result
       end
 
       private

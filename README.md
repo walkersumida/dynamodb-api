@@ -74,6 +74,22 @@ items = scan.all.items
 |3 |3 |Model S |0.20120601e8 |0 |
 |4 |1 |S2000 |0.19980101e8 |1 |
 
+
+#### Next(Paging) [Unreleased]
+
+```ruby
+scan = Dynamodb::Api.scan
+scan.from('cars').
+  limit(1)
+_items = scan.all.items
+items = scan.next.items
+```
+
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|2 |2 |CROWN |0.19550101e8 |0 |
+
+
 ### Query
 https://docs.aws.amazon.com/sdkforruby/api/Aws/DynamoDB/Client.html#query-instance_method
 
@@ -147,6 +163,22 @@ items = query.all.items
 | id | maker_id(Partition key) | model | release_date(Sort key) | status |
 |:---|:---|:---|:---|:---|
 |1 |1 |Accord |0.19760508e8 |0 |
+
+####  Next(Paging) [Unreleased]
+
+```ruby
+query = Dynamodb::Api.query
+query.from('cars').index('index_maker_id_release_date').
+  where(['maker_id', '=', 1]).
+  order('asc'). # default: 'desc'
+  limit(1)
+_items = query.all.items
+items = query.next.items
+```
+
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|4 |1 |S2000 |0.19980101e8 |1 |
 
 #### Expression Attribute Names
 

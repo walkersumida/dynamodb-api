@@ -1,23 +1,23 @@
 RSpec.describe Dynamodb::Api::Scan do
-  describe '#all' do
-    before do
-      items = [
-        {
-          id: '1', maker_id: 1, maker: 'Honda', model: 'Accord', release_date: 19760508, status: 0,
-        },
-        {
-          id: '2', maker_id: 2, maker: 'Toyota', model: 'CROWN', release_date: 19550101, status: 0,
-        },
-        {
-          id: '3', maker_id: 3, maker: 'Tesla', model: 'Model S', release_date: 20120601, status: 0,
-        },
-        {
-          id: '4', maker_id: 1, maker: 'Honda', model: 'S2000', release_date: 19980101, status: 1,
-        },
-      ]
-      DynamodbHelper.new.create_dummy_data(items)
-    end
+  before do
+    items = [
+      {
+        id: '1', maker_id: 1, maker: 'Honda', model: 'Accord', release_date: 19760508, status: 0,
+      },
+      {
+        id: '2', maker_id: 2, maker: 'Toyota', model: 'CROWN', release_date: 19550101, status: 0,
+      },
+      {
+        id: '3', maker_id: 3, maker: 'Tesla', model: 'Model S', release_date: 20120601, status: 0,
+      },
+      {
+        id: '4', maker_id: 1, maker: 'Honda', model: 'S2000', release_date: 19980101, status: 1,
+      },
+    ]
+    DynamodbHelper.new.create_dummy_data(items)
+  end
 
+  describe '#all' do
     context 'select clause' do
       it 'works' do
         scan = Dynamodb::Api.scan
@@ -65,6 +65,30 @@ RSpec.describe Dynamodb::Api::Scan do
           filter('#status = :status', ':status': 1)
         items = scan.all.items
         expect(items.count).to eq(1)
+      end
+    end
+  end
+
+  describe '#next' do
+    context 'exists last_evaluated_key' do
+      it 'returns next items' do
+        scan = Dynamodb::Api.scan
+        scan.from('cars').
+          limit(2)
+        result = scan.all
+        expect(result.items.map { |i| i['id'] }).to eq(%w(1 4))
+        result = scan.next
+        expect(result.items.map { |i| i['id'] }).to eq(%w(3 2))
+      end
+    end
+
+    context 'not exists last_evaluated_key' do
+      it 'returns nil' do
+        scan = Dynamodb::Api.scan
+        scan.from('cars')
+        _result = scan.all
+        result = scan.next
+        expect(result).to be nil
       end
     end
   end
