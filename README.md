@@ -75,7 +75,7 @@ items = scan.all.items
 |4 |1 |S2000 |0.19980101e8 |1 |
 
 
-#### Next(Paging) [Unreleased]
+#### Next(Paging)
 
 ```ruby
 scan = Dynamodb::Api.scan
@@ -164,7 +164,7 @@ items = query.all.items
 |:---|:---|:---|:---|:---|
 |1 |1 |Accord |0.19760508e8 |0 |
 
-####  Next(Paging) [Unreleased]
+####  Next(Paging)
 
 ```ruby
 query = Dynamodb::Api.query
