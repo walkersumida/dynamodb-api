@@ -74,6 +74,31 @@ items = scan.all.items
 |3 |3 |Model S |0.20120601e8 |0 |
 |4 |1 |S2000 |0.19980101e8 |1 |
 
+#### Filter
+
+```ruby
+scan = Dynamodb::Api.scan
+scan.from('cars').
+  filter('model = :model', ':model': 'S2000')
+items = scan.all.items
+```
+
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|4 |1 |S2000 |0.19980101e8 |1 |
+
+#### Limit
+
+```ruby
+scan = Dynamodb::Api.scan
+scan.from('cars').
+  limit(1)
+items = scan.all.items
+```
+
+| id | maker_id(Partition key) | model | release_date(Sort key) | status |
+|:---|:---|:---|:---|:---|
+|1 |1 |Accord |0.19760508e8 |0 |
 
 #### Next(Paging)
 
