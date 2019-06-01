@@ -34,4 +34,23 @@ RSpec.describe Dynamodb::Api::Delete::Item do
       expect(results.count).to eq(1)
     end
   end
+
+  describe '#delete_item table name prefix test' do
+    subject { Dynamodb::Api::Delete::Item.delete_item(item, table_name) }
+
+    let(:prefix) { 'prefix_' }
+
+    before do
+      Dynamodb::Api.config.table_name_prefix = prefix
+    end
+
+    it '(prefix) is added to table name' do
+      mock = double('Adapter.client')
+      allow(mock).to receive(:delete_item)
+      allow(Dynamodb::Api::Adapter).to receive(:client).and_return(mock)
+      expect(mock).to receive(:delete_item).with(key: item, table_name: "#{prefix}#{table_name}")
+
+      is_expected
+    end
+  end
 end
