@@ -12,7 +12,7 @@ Aws.config.update(
 )
 
 Dynamodb::Api.config do |config|
-  config.endpoint = 'http://0.0.0.0:8000'
+  config.endpoint = 'http://dynamodb:8000'
 end
 
 RSpec.configure do |config|
