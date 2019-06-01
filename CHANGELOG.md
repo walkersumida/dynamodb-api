@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [no version] - 2019-06-01
+### Added
+- [#48](https://github.com/walkersumida/dynamodb-api/pull/48) Improvement DX
+
 ## [0.8.0] - 2019-03-03
 ### Added
 - [#39](https://github.com/walkersumida/dynamodb-api/pull/39) `next` method
