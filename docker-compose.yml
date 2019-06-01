@@ -1,5 +1,11 @@
 version: '3'
 services:
+  ruby:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
   dynamodb:
     image: cnadiminti/dynamodb-local:2018-04-11
     ports:

@@ -10,8 +10,8 @@ gemfile:
   - gemfiles/aws_sdk_3.gemfile
 
 before_install:
-  - gem update --system
-  - rvm @default,@global do gem uninstall bundler -v 2.0.1 -x
+  - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
+  - gem install bundler -v 1.16.2
 
 before_script:
   - docker-compose up -d
