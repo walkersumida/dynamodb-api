@@ -6,11 +6,9 @@ module Dynamodb
       class FromClause # :nodoc:
         attr_reader :name
 
+        # @param name [String] the table name
         def initialize(name)
-          if Dynamodb::Api::Config.table_name_prefix?
-            name = Dynamodb::Api::Config.table_name_prefix + name
-          end
-          @name = name
+          @name = Dynamodb::Api::Config.build_table_name(name)
         end
       end
     end

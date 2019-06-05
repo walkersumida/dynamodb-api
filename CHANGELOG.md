@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [no version] - 2019-06-01
-### Added
+## [0.8.1] - 2019-06-03
+### Fixed
+- [#49](https://github.com/walkersumida/dynamodb-api/pull/49) not be added table name prefix
 - [#48](https://github.com/walkersumida/dynamodb-api/pull/48) Improvement DX
 
 ## [0.8.0] - 2019-03-03

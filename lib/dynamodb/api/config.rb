@@ -15,6 +15,11 @@ module Dynamodb
       option :retry_limit, default: 10
       option :table_name_prefix, default: ''
       option :index_name_prefix, default: ''
+
+      def build_table_name(value)
+        return value unless table_name_prefix?
+        "#{table_name_prefix}#{value}"
+      end
     end
   end
 end

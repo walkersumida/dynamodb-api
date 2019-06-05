@@ -4,6 +4,7 @@ module Dynamodb
   module Api
     module Delete
       class Tables # :nodoc:
+        # TODO: add rspec
         def self.delete_tables
           client = Adapter.client
           table_names = client.list_tables[:table_names]
