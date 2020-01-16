@@ -7,6 +7,6 @@ services:
     volumes:
       - .:/app
   dynamodb:
-    image: cnadiminti/dynamodb-local:2018-04-11
+    image: cnadiminti/dynamodb-local:2019-02-07
     ports:
       - 8000:8000
