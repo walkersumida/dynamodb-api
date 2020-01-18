@@ -14,7 +14,7 @@ module Dynamodb
 
       private
 
-      def build_query
+      def build_input
         raise NotImplementedError, "You must implement #{self.class}##{__method__}"
       end
 
@@ -30,20 +30,19 @@ module Dynamodb
         clause&.name ? clause.name : SelectClause.new.name
       end
 
-      def build_filter_clause
-        return {} if filter_clause&.expression.blank?
-        {
-          filter_expression: filter_clause.expression,
-          expression_attribute_values: filter_clause.values,
-        }
+      def build_filter_clause(input)
+        return input if filter_clause&.expression.blank?
+        input[:filter_expression] = filter_clause.expression
+        input[:expression_attribute_values] = filter_clause.values
+        input
       end
 
-      def build_expression_attribute_names(params)
+      def build_expression_attribute_names(input)
         if filter_clause&.reserved_words.present?
           expression_attribute.add(filter_clause.reserved_words)
         end
         if expression_attribute.names.present?
-          params[:expression_attribute_names] = expression_attribute.names
+          input[:expression_attribute_names] = expression_attribute.names
         end
       end
     end
