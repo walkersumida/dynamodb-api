@@ -12,6 +12,10 @@ module Dynamodb
         raise NotImplementedError, "You must implement #{self.class}##{__method__}"
       end
 
+      def next
+        raise NotImplementedError, "You must implement #{self.class}##{__method__}"
+      end
+
       private
 
       def build_input
