@@ -16,6 +16,8 @@ module Dynamodb
       option :table_name_prefix, default: ''
       option :index_name_prefix, default: ''
 
+      # @param value [String] the table name
+      # @return [String] the table name
       def build_table_name(value)
         return value unless table_name_prefix?
         "#{table_name_prefix}#{value}"
