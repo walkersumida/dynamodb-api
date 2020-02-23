@@ -27,7 +27,6 @@ module Dynamodb
         input = base_input(input)
         input = build_filter_clause(input)
         input[:index_name] = index_clause.name if index_clause&.name
-        input[:key_conditions] = where_clause.key_conditions if where_clause&.key_conditions
         input[:select] = select_name(select_clause)
         build_expression_attribute_names(input)
         input[:limit] = limit_clause.number if limit_clause&.number
