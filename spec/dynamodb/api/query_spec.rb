@@ -34,6 +34,14 @@ RSpec.describe Dynamodb::Api::Query do
         items = query.all.items
         expect(items.count).to eq(1)
       end
+
+      it 'works(using BEGINS_WITH)' do
+        query = Dynamodb::Api.query
+        query.from('cars').index('index_maker_id_model').
+          where([['maker_id', '=', 1], ['model', 'begins_with', 'S2']])
+        items = query.all.items
+        expect(items.count).to eq(1)
+      end
     end
 
     context 'limit clause' do

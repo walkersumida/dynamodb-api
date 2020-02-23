@@ -10,13 +10,13 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
 
         it 'returns conditions for dynamodb' do
           expect(
-            Dynamodb::Api::Relation::WhereClause.new(key_condition).key_conditions
-          ).to eq(
-            'maker' => {
-              attribute_value_list: %w(Honda),
-              comparison_operator: 'EQ',
-            }
-          )
+            Dynamodb::Api::Relation::WhereClause.
+              new(key_condition).key_condition
+          ).to eq('maker = :maker')
+          expect(
+            Dynamodb::Api::Relation::WhereClause.
+              new(key_condition).attribute_values
+          ).to eq({ ':maker' => 'Honda' })
         end
       end
 
@@ -27,14 +27,13 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
 
         it 'returns conditions for dynamodb' do
           expect(
-            Dynamodb::Api::Relation::WhereClause.new(key_condition).
-              key_conditions
-          ).to eq(
-            'maker' => {
-              attribute_value_list: %w(Honda),
-              comparison_operator: 'EQ',
-            }
-          )
+            Dynamodb::Api::Relation::WhereClause.
+              new(key_condition).key_condition
+          ).to eq('maker = :maker')
+          expect(
+            Dynamodb::Api::Relation::WhereClause.
+              new(key_condition).attribute_values
+          ).to eq({ ':maker' => 'Honda' })
         end
       end
     end
@@ -47,17 +46,16 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
 
         it 'returns conditions for dynamodb' do
           expect(
-            Dynamodb::Api::Relation::WhereClause.new(key_condition).key_conditions
-          ).to eq(
-            'maker' => {
-              attribute_value_list: %w(Honda),
-              comparison_operator: 'EQ',
-            },
-            'release_date' => {
-              attribute_value_list: [19_980_101],
-              comparison_operator: 'GE',
-            }
-          )
+            Dynamodb::Api::Relation::WhereClause.
+              new(key_condition).key_condition
+          ).to eq('maker = :maker AND release_date >= :release_date')
+          expect(
+            Dynamodb::Api::Relation::WhereClause.
+              new(key_condition).attribute_values
+          ).to eq({
+            ':maker' => 'Honda',
+            ':release_date' => 19_980_101
+          })
         end
       end
     end
