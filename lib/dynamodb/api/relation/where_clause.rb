@@ -86,7 +86,7 @@ module Dynamodb
             }
           else
             {
-              ":#{key}" => values.is_a?(Array) ? values[0] : values
+              ":#{key}" => values.is_a?(Array) ? values[0] : values,
             }
           end
         end

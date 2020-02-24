@@ -47,9 +47,11 @@ RSpec.describe Dynamodb::Api::Query do
         query = Dynamodb::Api.query
         query.from('cars').index('index_maker_id_release_date').
           where(
-            [['maker_id', '=', 1],
-             ['release_date', 'between', [19550101, 19980101]]
-        ])
+            [
+              ['maker_id', '=', 1],
+              ['release_date', 'between', [19550101, 19980101]],
+            ]
+          )
         items = query.all.items
         expect(items.count).to eq(2)
       end

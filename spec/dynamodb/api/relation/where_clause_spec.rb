@@ -69,7 +69,7 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
             new(key_condition).attribute_values
           ).to eq({
             ':from_release_date' => 19_980_101,
-            ':to_release_date' => 20_120_601
+            ':to_release_date' => 20_120_601,
           })
         end
       end
@@ -91,7 +91,7 @@ RSpec.describe Dynamodb::Api::Relation::WhereClause do
               new(key_condition).attribute_values
           ).to eq({
             ':maker' => 'Honda',
-            ':release_date' => 19_980_101
+            ':release_date' => 19_980_101,
           })
         end
       end
