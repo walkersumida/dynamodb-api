@@ -66,6 +66,10 @@ class DynamodbHelper
         attribute_name: 'release_date',
         attribute_type: 'N',
       },
+      {
+        attribute_name: 'model',
+        attribute_type: 'S',
+      },
     ]
   end
 
@@ -89,6 +93,26 @@ class DynamodbHelper
           },
           {
             attribute_name: 'release_date',
+            key_type: 'RANGE',
+          },
+        ],
+        projection: {
+          projection_type: 'ALL',
+        },
+        provisioned_throughput: {
+          read_capacity_units: 5,
+          write_capacity_units: 5,
+        },
+      },
+      {
+        index_name: 'index_maker_id_model',
+        key_schema: [
+          {
+            attribute_name: 'maker_id',
+            key_type: 'HASH',
+          },
+          {
+            attribute_name: 'model',
             key_type: 'RANGE',
           },
         ],
