@@ -34,10 +34,22 @@ module Dynamodb
         clause&.name ? clause.name : SelectClause.new.name
       end
 
+      # Build filter clause.
+      # `filter_expression`: e.g. "Artist = :a"
+      # `expression_attribute_values`: e.g. { ":a" => "No One You Know" }
+      #
+      # @param input [Aws::DynamoDB::Types::ScanInput]
+      # @return [Aws::DynamoDB::Types::ScanInput]
       def build_filter_clause(input)
         return input if filter_clause&.expression.blank?
         input[:filter_expression] = filter_clause.expression
-        input[:expression_attribute_values] = filter_clause.values
+        if filter_clause.values.present?
+          if input[:expression_attribute_values].nil?
+            input[:expression_attribute_values] = {}
+          end
+          input[:expression_attribute_values].
+            merge!(filter_clause.values)
+        end
         input
       end
 
