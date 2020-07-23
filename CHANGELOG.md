@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- [57](https://github.com/walkersumida/dynamodb-api/pull/57) Unsupport ruby2.3 and activesupport4
+
 ---
 
 ## [0.9.0] - 2020-02-24
