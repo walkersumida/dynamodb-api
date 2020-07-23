@@ -4,5 +4,6 @@ source "https://rubygems.org"
 
 gem "pry-byebug", platforms: :ruby
 gem "aws-sdk", "~> 3"
+gem "activesupport", "~> 5"
 
 gemspec path: "../"

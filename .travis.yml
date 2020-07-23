@@ -5,8 +5,16 @@ rvm:
   - 2.5
   - 2.6
 gemfile:
-  - gemfiles/aws_sdk_2.gemfile
-  - gemfiles/aws_sdk_3.gemfile
+  - gemfiles/aws_sdk_2_rails_5.gemfile
+  - gemfiles/aws_sdk_2_rails_6.gemfile
+  - gemfiles/aws_sdk_3_rails_5.gemfile
+  - gemfiles/aws_sdk_3_rails_6.gemfile
+
+matrix:
+  exclude:
+    - rvm: 2.4
+      gemfile: gemfiles/aws_sdk_2_rails_6.gemfile
+      gemfile: gemfiles/aws_sdk_3_rails_6.gemfile
 
 before_install:
   - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
