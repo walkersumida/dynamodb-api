@@ -6,15 +6,11 @@ rvm:
   - 2.6
   - 2.7
 gemfile:
-  - gemfiles/aws_sdk_2_rails_5.gemfile
-  - gemfiles/aws_sdk_2_rails_6.gemfile
   - gemfiles/aws_sdk_3_rails_5.gemfile
   - gemfiles/aws_sdk_3_rails_6.gemfile
 
 matrix:
   exclude:
-    - rvm: 2.4
-      gemfile: gemfiles/aws_sdk_2_rails_6.gemfile
     - rvm: 2.4
       gemfile: gemfiles/aws_sdk_3_rails_6.gemfile
 
