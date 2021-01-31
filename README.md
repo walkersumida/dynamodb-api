@@ -1,6 +1,6 @@
 # Dynamodb::Api
 
-[![Build Status](https://travis-ci.org/walkersumida/dynamodb-api.svg?branch=master)](https://travis-ci.org/walkersumida/dynamodb-api)
+![Build Status](https://github.com/walkersumida/dynamodb-api/workflows/build/badge.svg?branch=master)
 [![Gem Version](https://badge.fury.io/rb/dynamodb-api.svg)](https://badge.fury.io/rb/dynamodb-api)
 
 ## Installation
