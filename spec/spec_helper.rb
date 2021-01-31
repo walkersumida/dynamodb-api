@@ -12,7 +12,8 @@ Aws.config.update(
 )
 
 Dynamodb::Api.config do |config|
-  config.endpoint = 'http://dynamodb:8000'
+  endpoint = ENV['TEST_DYNAMODB_ENDPOINT'] || 'http://dynamodb:8000'
+  config.endpoint = endpoint
 end
 
 RSpec.configure do |config|
