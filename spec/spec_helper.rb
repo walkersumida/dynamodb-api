@@ -12,6 +12,8 @@ Aws.config.update(
 )
 
 Dynamodb::Api.config do |config|
+  # Add `TEST_DYNAMODB_ENDPOINT`, as it may not be accessible on CI.
+  # So specify `http://0.0.0.0:8000` on CI.
   endpoint = ENV['TEST_DYNAMODB_ENDPOINT'] || 'http://dynamodb:8000'
   config.endpoint = endpoint
 end
